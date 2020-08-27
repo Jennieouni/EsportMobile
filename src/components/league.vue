@@ -14,7 +14,7 @@
               </div>
               <div class="info">
                 <div class="item">
-                  <img :src="item.game-img" />
+                  <img :src="item.game_img" />
                   <p>{{item.matchtime}}</p>
                 </div>
               </div>
@@ -76,7 +76,7 @@ export default {
     // console.log(this.gameID)
     axios.get('/Match/' + this.gameID).then(response => {
       this.league = response.data
-      console.log(this.league)
+      // console.log(this.league)
     }).catch(error => {
       // alert('网络错误，请稍后刷新重试！')
       console.log(error)

@@ -1,3 +1,6 @@
+iframe[src*="ucweb.com"] { display: none !important; }
+iframe[id^="utp__"] { display: none !important; }
+iframe[id^="head__"] { display: none !important; }
 html {
     line-height: 1.15;
     -webkit-tap-highlight-color: transparent

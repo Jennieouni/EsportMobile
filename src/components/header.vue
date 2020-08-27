@@ -10,17 +10,17 @@
               <div class="login-phone">
                 <img src="static/mimages/user.svg" alt="">
                 <span></span>
-                <input v-model="loginForm.phone" type="text" placeholder="请输入您的手机号（11位数）">
+                <input v-model="loginForm.phone" type="text" autocomplete="off" placeholder="请输入您的手机号">
               </div>
               <div class="login-pwd">
                 <img src="static/mimages/pwd.svg" alt="">
                 <span></span>
-                <input v-model="loginForm.password" type="password" placeholder="请输入您的密码（至少8位数）" minlength="8">
+                <input v-model="loginForm.password" type="text" onfocus="this.type='password'" autocomplete="off" placeholder="请输入您的密码">
               </div>
               <div id="errorTips" class="error-tips">用户名或密码错误！</div>
               <div class="login-button"><button type="submit" @click="login()">登录</button></div>
             </form>
-            <div class="clear" @click="closeLogin()"><img src="static/images/clear.svg" alt=""></div>
+            <div class="clear" @click="closeLogin()"></div>
             <div class="bottom-tips"><p>登录获取更多最新赛事详情！</p>还没有账号？赶快去<span @click="toRegister()"> 注册 </span>一个吧！</div>
         </div>
       </div>
@@ -31,22 +31,22 @@
               <div class="login-phone">
                 <img src="static/mimages/user.svg" alt="">
                 <span></span>
-                <input v-model="registerForm.phone" type="text" placeholder="请输入您的手机号（11位数）">
+                <input v-model="registerForm.phone" type="text" autocomplete="off" placeholder="请输入手机号（11位数）">
               </div>
               <div class="login-pwd">
                 <img src="static/mimages/pwd.svg" alt="">
                 <span></span>
-                <input v-model="registerForm.password" type="password" placeholder="请输入您的密码（至少8位数）" minlength="8">
+                <input v-model="registerForm.password" type="text" onfocus="this.type='password'" autocomplete="off" placeholder="请输入密码（8位数以上）">
               </div>
               <div class="register-code">
-                <input type="text" placeholder="请输入验证码" maxlength="6">
+                <input v-model="registerForm.code" type="text" placeholder="请输入验证码" maxlength="6">
                 <div @click="sendCode()" id="code" class="code">{{content}}</div>
               </div>
               <div id="errorTips1" class="error-tips">用户名或密码错误！</div>
               <div class="login-button"><button type="submit" @click="register()">注册</button></div>
             </form>
             <div class="bottom-tips" id="hideTips">注册成功！赶快去<span @click="toLogin()"> 登录 </span>吧！</div>
-            <div class="clear" @click="closeRegister()"><img src="static/images/clear.svg" alt=""></div>
+            <div class="clear" @click="closeRegister()"></div>
         </div>
       </div>
     </div>
@@ -77,7 +77,8 @@ export default {
       },
       registerForm: {
         phone: '',
-        password: ''
+        password: '',
+        code: ''
       },
       timer: '',
       token: '',
@@ -137,7 +138,7 @@ export default {
             errorTips.style.display = 'block'
             errorTips.innerHTML = '未知错误！请稍后重试！'
           }
-          console.log(error)
+          // console.log(error)
         })
       }
     },
@@ -145,17 +146,17 @@ export default {
       let _this = this
       let errorTips1 = document.getElementById('errorTips1')
       let hideTips = document.getElementById('hideTips')
-      if (_this.loginForm.phone === '' || _this.loginForm.password === '') {
+      if (_this.registerForm.phone === '' || _this.registerForm.password === '') {
         errorTips1.style.display = 'block'
         errorTips1.innerHTML = '用户名或密码不能为空！'
-      } else if (!(/^1[3456789]\d{9}$/.test(_this.loginForm.phone))) {
+      } else if (!(/^1[3456789]\d{9}$/.test(_this.registerForm.phone))) {
         errorTips1.style.display = 'block'
         errorTips1.innerHTML = '手机号码格式有误！'
-      } else if (_this.loginForm.password.length < 8) {
+      } else if (_this.registerForm.password.length < 8) {
         errorTips1.style.display = 'block'
         errorTips1.innerHTML = '为确保您的账户安全，请设置8位数以上的密码！'
       } else {
-        axios.post('/register?phone=' + this.loginForm.phone + '&password=' + this.loginForm.password).then(response => {
+        axios.post('/register?phone=' + this.registerForm.phone + '&password=' + this.registerForm.password + '&code=' + this.registerForm.code).then(response => {
           console.log(response)
           hideTips.style.display = 'block'
           // clearInterval(this.timer)
@@ -172,7 +173,7 @@ export default {
             errorTips1.style.display = 'block'
             errorTips1.innerHTML = '未知错误，请稍后刷新重试！'
           }
-          console.log(error)
+          // console.log(error)
         })
       }
     },
@@ -203,11 +204,11 @@ export default {
     sendCode () {
       let errorTips1 = document.getElementById('errorTips1')
       let _this = this
-      if (!(/^1[3456789]\d{9}$/.test(_this.loginForm.phone))) {
+      if (!(/^1[3456789]\d{9}$/.test(_this.registerForm.phone))) {
         errorTips1.style.display = 'block'
         errorTips1.innerHTML = '手机号码格式有误！'
       } else {
-        axios.post('code?phone=' + this.loginForm.phone).then(res => {
+        axios.post('code?phone=' + this.registerForm.phone).then(res => {
           if (!this.canClick) return
           this.canClick = false
           this.content = this.countdown + 's后重新发送'
@@ -239,7 +240,7 @@ export default {
   },
   mounted () {
     // console.log(localStorage.token)
-    if (localStorage.token === undefined) {
+    if (localStorage.token === undefined && this.loginStatus !== 201) {
       this.timer = setInterval(this.showLogin, 30000)
     }
   },
@@ -302,7 +303,7 @@ export default {
   height: 100vh;
   background: #000000;
   opacity: .5;
-  z-index: 999;
+  z-index: 9999999999999;
   display: none;
 }
 .login-wrap{
@@ -311,19 +312,19 @@ export default {
   left: 50%;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
-  z-index: 99999;
+  z-index: 99999999999999;
   display: none;
 }
 .login{
   width: 80vw;
-  height: 37vh;
+  height: 50%;
   background: #373737;
   border-radius: 6px;
   padding: 16px 20px;
 }
 .register{
   width: 80vw;
-  height: 41vh;
+  height: 50%;
   background: #373737;
   border-radius: 6px;
   padding: 16px 20px;
@@ -335,11 +336,11 @@ export default {
   margin: 0 auto 20px;
 }
 .popup form{
-  width: 57.1vw;
+  width: 60vw;
   margin: 0 auto;
 }
 .popup form input{
-  width: 236px;
+  width: 60vw;
   height: 32px;
   background: #2D2C2B;
   font-family: PingFangSC-Regular;
@@ -365,7 +366,7 @@ export default {
 }
 .popup .login-phone img{
   position: absolute;
-  margin: 7px 12px 0 20px;
+  margin: 1vh 12px 0 20px;
   width: 14px;
   height: 16.8px;
 }
@@ -376,7 +377,7 @@ export default {
   height: 16.8px;
 }
 .popup button{
-  width: 236px;
+  width: 60vw;
   height: 36px;
   color: #FFBD34;
   background: transparent;
@@ -409,7 +410,7 @@ export default {
   cursor: pointer;
 }
 .register-code input{
-  padding: 0 120px 0 20px;
+  padding: 0 90px 0 20px;
 }
 .register-code .code{
   font-size: 14px;
@@ -422,6 +423,7 @@ export default {
 .popup .clear{
   width: 16px;
   height: 16px;
+  background: url('/static/images/clear.svg');
   position: absolute;
   top: 10px;
   right: 10px;

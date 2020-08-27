@@ -16,7 +16,7 @@
           <div status="2" class="match-end-panel">
             <div v-for="item in scoreOver" :key="item.id" class="match-end-item match-item">
               <div class="header">
-                <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                   <img :src="item.eventsimg"/>
                   <p>{{item.events}}</p>
                 </div>
@@ -47,7 +47,7 @@
           <div status="2" class="match-end-panel">
             <div v-for="item in dotaScoreOver" :key="item.id" class="match-end-item match-item">
               <div class="header">
-                <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                   <img :src="item.eventsimg"/>
                   <p>{{item.events}}</p>
                 </div>
@@ -78,7 +78,7 @@
           <div status="2" class="match-end-panel">
             <div v-for="item in csScoreOver" :key="item.id" class="match-end-item match-item">
               <div class="header">
-                <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                   <img :src="item.eventsimg"/>
                   <p>{{item.events}}</p>
                 </div>
@@ -109,7 +109,7 @@
           <div status="2" class="match-end-panel">
             <div v-for="item in lolScoreOver" :key="item.id" class="match-end-item match-item">
               <div class="header">
-                <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                   <img :src="item.eventsimg"/>
                   <p>{{item.events}}</p>
                 </div>
@@ -140,7 +140,7 @@
           <div status="2" class="match-end-panel">
             <div v-for="item in kogScoreOver" :key="item.id" class="match-end-item match-item">
               <div class="header">
-                <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                   <img :src="item.eventsimg"/>
                   <p>{{item.events}}</p>
                 </div>

@@ -24,13 +24,16 @@
                 <diV v-for="item in allMatching" :key="item.id" class="item">
                   <div class="match-item-wrapper">
                     <div class="header">
-                      <div class="league-panel" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league-panel" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="logo"/>
                         <p class="name">{{item.events}}</p>
                       </div>
-                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0" class="videos-panel" >
-                        <img data-v-9ad89d7e="" src="static/mimages/video_icon.gif" class="live-text">
+                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') === -1"  class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
                       </div>
+                      <a v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') !== -1" :href="item.tv[0].link" target="_blank" class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
+                      </a>
                     </div>
                     <div class="item-row-title">
                       <div class="tag-1">
@@ -89,7 +92,7 @@
                 <div class="container">
                   <div v-for="item in allMatch" :key="item.id" class="match-item">
                     <div class="league-info">
-                      <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="league-info-logo"/>
                         <p class="league-info-name">{{item.events}}</p>
                       </div>
@@ -130,13 +133,16 @@
                 <diV v-for="item in dotaMatching" :key="item.id" class="item">
                   <div class="match-item-wrapper">
                     <div class="header">
-                      <div class="league-panel" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league-panel" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="logo"/>
                         <p class="name">{{item.events}}</p>
                       </div>
-                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0" class="videos-panel">
-                        <img data-v-9ad89d7e="" src="static/mimages/video_icon.gif" class="live-text">
+                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') === -1"  class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
                       </div>
+                      <a v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') !== -1" :href="item.tv[0].link" target="_blank" class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
+                      </a>
                     </div>
                     <div class="item-row-title">
                       <div class="tag-1">
@@ -195,7 +201,7 @@
                 <div class="container">
                   <div v-for="item in dotaMatch" :key="item.id" class="match-item">
                     <div class="league-info">
-                      <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="league-info-logo"/>
                         <p class="league-info-name">{{item.events}}</p>
                       </div>
@@ -236,13 +242,16 @@
                 <diV v-for="item in csMatching" :key="item.id" class="item">
                   <div class="match-item-wrapper">
                     <div class="header">
-                      <div class="league-panel" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league-panel" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="logo"/>
                         <p class="name">{{item.events}}</p>
                       </div>
-                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0" class="videos-panel">
-                        <img data-v-9ad89d7e="" src="static/mimages/video_icon.gif" class="live-text">
+                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') === -1"  class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
                       </div>
+                      <a v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') !== -1" :href="item.tv[0].link" target="_blank" class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
+                      </a>
                     </div>
                     <div class="item-row-title">
                       <div class="tag-1">
@@ -301,7 +310,7 @@
                 <div class="container">
                   <div v-for="item in csMatch" :key="item.id" class="match-item">
                     <div class="league-info">
-                      <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="league-info-logo"/>
                         <p class="league-info-name">{{item.events}}</p>
                       </div>
@@ -342,13 +351,16 @@
                 <diV v-for="item in lolMatching" :key="item.id" class="item">
                   <div class="match-item-wrapper">
                     <div class="header">
-                      <div class="league-panel" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league-panel" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="logo"/>
                         <p class="name">{{item.events}}</p>
                       </div>
-                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0" class="videos-panel">
-                        <img data-v-9ad89d7e="" src="static/mimages/video_icon.gif" class="live-text">
+                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') === -1"  class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
                       </div>
+                      <a v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') !== -1" :href="item.tv[0].link" target="_blank" class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
+                      </a>
                     </div>
                     <div class="item-row-title">
                       <div class="tag-1">
@@ -407,7 +419,7 @@
                 <div class="container">
                   <div v-for="item in lolMatch" :key="item.id" class="match-item">
                     <div class="league-info">
-                      <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="league-info-logo"/>
                         <p class="league-info-name">{{item.events}}</p>
                       </div>
@@ -448,13 +460,16 @@
                 <diV v-for="item in kogMatching" :key="item.id" class="item">
                   <div class="match-item-wrapper">
                     <div class="header">
-                      <div class="league-panel" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league-panel" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="logo"/>
                         <p class="name">{{item.events}}</p>
                       </div>
-                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0" class="videos-panel">
-                        <img data-v-9ad89d7e="" src="static/mimages/video_icon.gif" class="live-text">
+                      <div @click="jumpLiving(item.id)" v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') === -1"  class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
                       </div>
+                      <a v-if="item.tv.length !== 0 && item.tv[0].name.indexOf('斗鱼') !== -1" :href="item.tv[0].link" target="_blank" class="videos-panel">
+                        <img src="static/images/video_icon.gif" class="live-text" />
+                      </a>
                     </div>
                     <div class="item-row-title">
                       <div class="tag-1">
@@ -513,7 +528,7 @@
                 <div class="container">
                   <div v-for="item in kogMatch" :key="item.id" class="match-item">
                     <div class="league-info">
-                      <div class="league" @click="jumpLeague(item.id, item.type, item.match)">
+                      <div class="league" @click="jumpLeague(item.eventsid, item.type, item.match)">
                         <img :src="item.eventsimg" class="league-info-logo"/>
                         <p class="league-info-name">{{item.events}}</p>
                       </div>
@@ -683,14 +698,14 @@ export default {
       })
     },
     jumpLiving (id) {
-      let routeData = this.$router.resolve({
+      this.$router.push({
         path: '/living.html',
         query: {
           // type: type,
           livingID: id
         }
       })
-      window.open(routeData.href, '_blank')
+      // window.open(routeData.href, '_blank')
     }
   }
 }

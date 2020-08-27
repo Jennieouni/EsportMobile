@@ -233,7 +233,10 @@ export default {
       this.date = response.data[1]
       // console.log(this.date)
       axios.get('/GetWeek').then(response => {
-        console.log(response.data)
+        // console.log(response.data)
+        // for ( let i = 0; i < response.data.length; i++) {
+        //   let
+        // }
       }).catch(error => {
         console.log(error)
       })

@@ -20,7 +20,7 @@
               <span>{{item.team2winnum}}</span>
             </div>
             <p class="time">
-              <span class="match-date">{{item.time}}</span>
+              <span class="match-date">{{item.time}}<br></span>
               <span class="match-status match-ongoing">
                 <span class="match-duration">{{item.now}}</span>
               </span>
@@ -38,10 +38,13 @@
         </div> -->
         <div class="live-iframe">
           <iframe
+            allowfullscreen="true"
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
             width="100%"
             height="100%"
             frameborder="0"
-            scrolling="no"
+            scrolling="yes"
             :src="item.tv[0].link"
           ></iframe>
         </div>
@@ -73,7 +76,7 @@ export default {
     // console.log(this.livingID)
     axios.get('/Video/' + this.livingID).then(response => {
       this.videoInfo = response.data
-      console.log(this.videoInfo)
+      // console.log(this.videoInfo)
     }).catch(error => {
       alert('网络错误，请稍后刷新重试！')
       console.log(error)
@@ -204,7 +207,7 @@ export default {
   }
 
   .living-team-logo {
-    width: 80px;
+    width: 15.8vw;
   }
 
   .living-team-center .vs span {
@@ -244,6 +247,7 @@ export default {
     height: 640px;
     margin-top: 10px;
     padding: 8px;
+    background: #ffffff;
   }
 
   .match-ongoing .match-duration:after {
