@@ -200,7 +200,6 @@ export default {
     }
   },
   mounted () {
-    console.log(111)
     axios.get('/ScoreAppointTag/0').then(response => {
       this.scoreOver = response.data[2]
       // console.log(this.scoreOver)
